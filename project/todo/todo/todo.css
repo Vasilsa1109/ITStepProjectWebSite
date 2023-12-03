@@ -1,0 +1,59 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list{
+    padding: 20px;
+    width: 800px;
+    height: max-content;
+    border: solid 1px black;
+    background-color: rgb(172, 177, 231);
+    -webkit-box-shadow: -2px 0px 21px 14px rgba(123, 85, 189, 0.23);
+-moz-box-shadow: -2px 0px 21px 14px rgba(123, 85, 189, 0.23);
+box-shadow: -2px 0px 21px 14px rgba(123, 85, 189, 0.23);
+}
+#button{
+    width: 60px;
+    height: 40px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    border: solid 2px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tasks{
+    display: flex;
+    flex-direction: column;
+}
+.task{
+    display: flex;
+    gap: 60px;
+    margin: 20px;
+}
+.but{
+    width: 30px;
+    height: 30px;
+    background: darkgreen;
+}
+.but1{
+    width: 30px;
+    height: 30px;
+    background: darkred;
+}
+.b{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+input{
+    border: none;
+    height: 40px;
+    width: 100%;
+}
+h1{
+    padding: 10px;
+    background-color: rgb(199, 160, 236);
+    border: solid 1px black;
+}
