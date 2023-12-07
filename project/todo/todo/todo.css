@@ -29,8 +29,9 @@ box-shadow: -2px 0px 21px 14px rgba(123, 85, 189, 0.23);
 }
 .task{
     display: flex;
-    gap: 60px;
     margin: 20px;
+    gap: 30px;
+    width: 100%;
 }
 .but{
     width: 30px;
@@ -56,4 +57,7 @@ h1{
     padding: 10px;
     background-color: rgb(199, 160, 236);
     border: solid 1px black;
+}
+input:focus {
+    outline: none;
 }

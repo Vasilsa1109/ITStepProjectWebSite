@@ -56,6 +56,14 @@ main{
     border-radius: 40%;
     background:url("../images/me.jpeg") 60% 40%;
 }
+#Contact{
+    background-color:  rgb(97, 108, 151);
+    color: aliceblue;
+    border: solid 3px rgb(204, 190, 218);
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+}
 .menu{
     display: flex;
     flex-direction: column;
