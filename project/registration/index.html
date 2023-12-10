@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+        <header>
+            <div class="logo">
+                <div>ITStep</div>
+            </div>
+            <button class="menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="">Главная</a></li>
+                    <li><a href="">Проекты</a></li>
+                    <li><a href="">Обо мне</a></li>
+                    <li><a href="">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="form-registr">
+                <h2>Form registration</h2>
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label>Ф.И.О</label>
+                        <input type="text" class="form-control" name="fio" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Дата рождения</label>
+                        <input type="date" class="form-control" name="birthday" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пол</label>
+                        <select name="pol" class="form-control" required>
+                            <option value="male">Мужской пол</option>
+                            <option value="female">Женский пол</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Номер телефона</label>
+                        <input type="tel" class="form-control" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ссылка на GitHub</label>
+                        <input type="url" class="form-control" name="GitHub" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Адрес</label>
+                        <textarea class="form-control" name="address" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="form-control" type="button">Зарегестрировать</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-list">
+                <div class="card">
+                    <img src="avatar.png" alt="">
+                    <div class="card-name">Test</div>
+                    <div class="card-age">Возраст</div>
+                    <button type="button">Инфо</button>
+                </div>
+            </div>
+        </main>
+            <script src="../script_js/script.js"></script>
+            <script src="script.js"></script>
+    </body>
+</html>

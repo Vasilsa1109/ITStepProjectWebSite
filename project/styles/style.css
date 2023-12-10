@@ -114,7 +114,7 @@ span{
     background-color: rgb(145, 150, 204);
     height: 100%;
     max-width: 300px;
-    transform: translateX(80%);
+    transform: translateX(100%);
     transition: transform 1.2s ease-out;
 }
 ul{

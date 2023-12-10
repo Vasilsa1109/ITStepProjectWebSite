@@ -1,0 +1,81 @@
+main{
+    padding-top: 80px;
+    display: flex;
+    background: rgb(234, 226, 255);
+}
+.form-registr{
+    padding: 15px 30px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid rgb(120, 133, 185); 
+}
+.form-registr h2{
+    margin: 0;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+.form-group{
+    margin-bottom: 15px;
+}
+.form-group label{
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background-color: rgb(171, 179, 231);
+    color: rgb(9, 13, 29);
+}
+.form-group .form-control{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1.5px solid rgb(114, 127, 179);
+    padding-left: 15px;
+    padding-right: 15px;
+}
+input:focus {
+    outline: none;
+    color: rgb(48, 57, 94);
+}
+h2{
+    background: rgb(199, 207, 255);
+    text-align: center;
+}
+.form-group textarea.form-control{
+    height: 80px;
+}
+button{
+    font-weight: bold;
+    background-color: rgb(149, 160, 229);
+    color: rgb(9, 13, 29);
+}
+.card-list{
+    padding: 30px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+.card-list img{
+    width: 80px;
+    height: 80px;
+}
+.card-name{
+    font-weight: bold;
+}
+.card-age{
+    font-size: 12px;
+}
+.card button{
+    margin-top: 20px;
+    cursor: pointer;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 2px solid rgb(120, 133, 185); 
+}
