@@ -1,0 +1,12 @@
+
+/* @media  (min-width: 480px) and (max-width: 767px) {
+    main{
+        display: flex;
+        flex-direction: column;
+        max-width: 767px    }
+    nav{
+        max-width: 150px;
+        max-height: 500px;
+        font-size: 12px;
+    }
+} */
