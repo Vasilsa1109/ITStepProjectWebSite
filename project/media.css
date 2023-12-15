@@ -1,12 +1,31 @@
 
-/* @media  (min-width: 480px) and (max-width: 767px) {
+@media  (max-width: 679px) {
     main{
         display: flex;
         flex-direction: column;
-        max-width: 767px    }
-    nav{
-        max-width: 150px;
-        max-height: 500px;
-        font-size: 12px;
+        max-width: 600px    }
+    .main-menu{
+        max-width: 80px;
+        max-height: 100%;
     }
-} */
+    a{
+        font-size: 14px;
+    }
+} 
+
+@media  (max-width: 780px) {
+    body{
+     background: rgb(234, 226, 255);;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        max-width: 780px  }
+    .main-menu{
+        max-width: 100px;
+        max-height: 100%;
+    }
+    a{
+        font-size: 16px;
+    }
+} 

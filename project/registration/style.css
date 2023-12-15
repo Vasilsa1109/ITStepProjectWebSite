@@ -1,3 +1,4 @@
+
 main{
     padding-top: 80px;
     display: flex;
@@ -64,7 +65,7 @@ button{
 .card-name{
     font-weight: bold;
 }
-.card-age{
+.card-age, .card-pol, .card-tel, .card-link, .card-address{
     font-size: 12px;
 }
 .card button{
@@ -78,4 +79,11 @@ button{
     padding: 15px 25px;
     border-radius: 10px;
     border: 2px solid rgb(120, 133, 185); 
+}
+.error{
+    color: red;
+    font-size: 13px;
+}
+.form-group .form-control.error{
+    border-color: red;
 }
