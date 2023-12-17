@@ -43,7 +43,7 @@ function sendForm(event){
     let name = event.target[0].value;
     let nameTemplate = /^[А-Я][а-яА-Я\s]*[а-я]$/;
     if(nameTemplate.test(name)){
-        error.name="error name";
+        error.name="Введите ФИО в нужном формате";
         let namefield = document.getElementById("name-error");
         namefield.innerHTML = error.name;
         namefield.previousElementSibling.classList.add("error");
@@ -55,7 +55,7 @@ function sendForm(event){
         namefield.previousElementSibling.classList.remove("error");
     }
     let phone = event.target[3].value;
-    let phoneTemplate = /^\+375[0-9]{9}$/g;
+    let phoneTemplate = /^\+375[0-9]{9}$/g; 
     if(phoneTemplate.test(phone)){
         error.phone="Введите номер телефона(+375XXXXXXXXX)";
         let phonefield = document.getElementById("phone-error");
@@ -67,6 +67,34 @@ function sendForm(event){
         let phonefield = document.getElementById("phone-error");
         phonefield.innerHTML = "";
         phonefield.previousElementSibling.classList.remove("error");
+    }
+    let email = event.target[4].value;
+    let emailTemplate = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/g;
+    if(emailTemplate.test(email)){
+        error.email="Введите email-address: example@gmail.com";
+        let emailfield = document.getElementById("email-error");
+        emailfield.innerHTML = error.email;
+        emailfield.previousElementSibling.classList.add("error");
+    }
+    else{
+        error.email= null;
+        let emailfield = document.getElementById("email-error");
+        emailfield.innerHTML = "";
+        emailfield.previousElementSibling.classList.remove("error");
+    }
+    let url = event.target[5].value;
+    let urlTemplate = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;;
+    if(urlTemplate.test(url)){
+        error.url="Введите в формате: https://";
+        let urlfield = document.getElementById("url-error");
+       urlfield.innerHTML = error.url;
+        urlfield.previousElementSibling.classList.add("error");
+    }
+    else{
+        error.url= null;
+        let urlfield = document.getElementById("url-error");
+        urlfield.innerHTML = "";
+        urlfield.previousElementSibling.classList.remove("error");
     }
     return false;
 }
