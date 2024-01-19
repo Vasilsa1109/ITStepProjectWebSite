@@ -34,61 +34,53 @@
                 <form action="" method="POST" onsubmit="return sendForm(event)">
                     <div class="form-group">
                         <label>Ф.И.О</label>
-                        <input type="text" class="form-control" name="fio" required value="Ва Ва ва">
+                        <input type="text" class="form-control" name="fio" required value="Ва Ва ва" />
                         <div class="error" id="name-error"></div>
                     </div>
                     <div class="form-group">
                         <label>Дата рождения</label>
-                        <input type="date" class="form-control" name="birthday" required value="2015-12-12">
+                        <input type="date" class="form-control" name="birthday"  value="" />
                     </div>
                     <div class="form-group">
                         <label>Пол</label>
                         <select name="pol" class="form-control" required>
-                            <option value="male">Мужской пол</option>
-                            <option value="female">Женский пол</option>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Номер телефона</label>
-                        <input type="tel" class="form-control" name="phone" required value="+375111111111">
+                        <input type="text" class="form-control" name="phone" required value="+375333807356" />
                         <div class="error" id="phone-error"></div>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" required value="a@gmail.com">
-                        <div class="error" id="email-error"></div>
+                        <input type="text" class="form-control" name="email" required value="a@gmail.com" />
                     </div>
                     <div class="form-group">
-                        <label>Ссылка на GitHub</label>
-                        <input type="url" class="form-control" name="GitHub" required>
-                        <div class="error" id="url-error"></div>
+                        <label>Ссылка на Github</label>
+                        <input type="text" class="form-control" name="github" required value="https://github.com" />
                     </div>
                     <div class="form-group">
                         <label>Адрес</label>
-                        <textarea class="form-control" name="address" required>Minsk-----------</textarea>
+                        <textarea class="form-control" name="address" required>Минск 20000000</textarea>
                         <div class="error" id="address-error"></div>
                     </div>
                     <div class="form-group">
-                        <button class="form-control" type="submit">Зарегестрировать</button>
+                        <button class="form-control" type="submit">Зарегистрировать</button>
                     </div>
                 </form>
             </div>
-            <div class="card-list">
-                <div class="card" draggable="true" ondragstart="startDrag(event)" id="Test-card">
-                    <!-- <img src="avatar.png" alt="">
-                    <div class="card-name">Test</div>
-                    <div class="card-age">Возраст</div>
-                    <div class="card-pol">Test</div>
-                    <div class="card-tel">Возраст</div>
-                    <div class="card-email">Test</div>
-                    <div class="card-link">Возраст</div>
-                    <div class="card-address">Возраст</div>
-                    <button type="button" onclick="editUser()">Инфо</button> -->
+            <div class="group-viewport">
+                <h2>Группа 402</h2>
+                <div class="card-list">
+                    <p>Список пока пуст</p>
                 </div>
-                <div  class="icon" ondragstart="enterDrag(event)" ondragstart="leaveDrag(event)" ondrop="drop(event)">
-                    <img src="trash_bin.png" alt="">
-                </div>
-                <div></div>
+            </div>
+            <div class="icon" ondragenter="drag.enter(event)" ondragover="drag.over(event)"
+                ondragleave="drag.leave(event)" ondrop="drag.drop(event)">
+                <img src="trash_bin.png" alt="">
+            </div>
             </div>
         </main>
             <script src="../script_js/script.js"></script>

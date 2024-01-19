@@ -37,35 +37,26 @@
 
 // console.dir([]);
 
-if(window.localStorage.getItem("user"))
+if(window.localStorage.getItem("users"))
 {
-    let users = JSON.parse(window.localStorage.getItem("users")); //session storage
-    let cardlist =  document.getElementsByClassName("card-list")[0];
-    if(cardlist){
-        if(users.length>0){
-            cardlist.innerHTML = "";
-            users.forEach(function(user){
-                let newcard =   `<div class="card" draggable="true" ondragstart="startDrag(event) id="user-${user.id}}">
-                <img src="avatar.png" alt="">
-                <div class="card-name">ФИО: ${user.name}</div>
-                <div class="card-age">${user.age} лет</div>
-                <button type="button" onclick="editUser(${user.id})">Инфо</button>
-            </div>`;
-            cardlist.insertAdjacentHTML("beforeend", newcard);
-            })
-        }
-    }   
-    // if(cardlist){
-    //     cardlist.insertAdjacentHTML(
-    //         "beforeend",
-    //         `<div class="card" draggable="true" ondragstart="startDrag(event) id="user-${userData.id}}">
-    //         <img src="avatar.png" alt="">
-    //         <div class="card-name">ФИО: ${userData.name}</div>
-    //         <div class="card-age">${userData.age} лет</div>
-    //         <button type="button">Инфо</button>
-    //     </div>`
-    //     )
-    // }
+  let users = JSON.parse(window.localStorage.getItem("users"));
+  let cardList = document.getElementsByClassName("card-list")[0];
+
+  if(cardList){
+    if(users.length > 0){
+      cardList.innerHTML = "";
+
+      users.forEach(function(user){
+        let newCard = `<div class="card" draggable="true" ondragstart="drag.start(event)" id="${user.id}">
+                      <img src="avatar.png" alt="" ondragstart="event.preventDefault()"/>
+                      <div class="card-name">${user.name}</div>
+                      <div class="card-age">Возраст: ${user.age} лет</div>
+                      <button type="button" onclick="editUser(${user.id})">Инфо</button>
+                  </div>`;
+        cardList.insertAdjacentHTML("beforeEnd", newCard);
+      });
+    }
+  }
 }
 
 function sendForm(event){
@@ -140,7 +131,7 @@ function sendForm(event){
             <div class="card-email">Почта: ${email}</div>
             <div class="card-link">Ссылка: ${url}</div>
             <div class="card-address">Адрес: ${address}</div>
-            <button type="button" onclick="editUser(${id})">Инфо</button>
+            <button type="button" onclick="editUser(${user.id})">Инфо</button>
         </div>`
         );
         // let userData = 'user-${id&$(event.target[0].value)&$(event.target[1].value)&$(now.getFullYear() - birthday.getFullYear()}&${event.target[2].value)&$(event.target[3].value)&$(event.target[4].value)&$(event.target[5].value)&$(event.target[6].value)'
@@ -162,11 +153,7 @@ function sendForm(event){
         users.push(user);
         window.localStorage.setItem("users", JSON.stringify(users))
 
-        editUser(`${user.id}`)
-        {
-            users.find(user);
-            console.dir(user);
-        }
+
         // let userData = JSON.stringify(user);
         
         // window.localStorage.setItem("user", userData);
@@ -181,6 +168,28 @@ function sendForm(event){
         // window.localStorage.setItem("adress", event.target[6].value);
     }
     return false;
+}
+function editUser(id){
+    let list = document.getElementsByClassName("card-list")[0];
+    let changes = {
+        id: id,
+        new_name: name,
+        new_age: age
+    }
+    list.insertAdjacentHTML(
+        "beforeend",
+        `<div class="card" draggable="true" ondragstart="startDrag(event) id="user-${id}">
+        <img src="avatar.png" alt="">
+        <div class="card-name">ФИО: ${new_name}</div>
+        <div class="card-age">${new_age} лет</div>
+        <div class="card-pol">Пол:${new_gender}</div>
+        <div class="card-tel">Номер телефона:${new_phone}</div>
+        <div class="card-email">Почта: ${new_email}</div>
+        <div class="card-link">Ссылка: ${new_url}</div>
+        <div class="card-address">Адрес: ${new_address}</div>
+        <button type="button" onclick="editUser(event)">Инфо</button>
+    </div>`)
+    users.push(changes);
 }
 
 function startDrag(event){
@@ -205,3 +214,55 @@ function endDrag(event){
         let el = document.getElementById(ElementId);
     }
 }
+
+let drag = {
+    el(e, className) {
+      let el = e.target;
+  
+      while (!el.classList.contains(className)) {
+        el = el.parentElement;
+      }
+  
+      return el;
+    },
+    start(e) {
+      let el = this.el(e, "card");
+      e.dataTransfer.setData("text/html", el.id);
+      e.dataTransfer.effectAllowed = "move";
+    },
+    enter(e) {
+      e.preventDefault();
+      this.el(e, "card-remove").classList.add("active");
+      e.dataTransfer.dropEffect = "move";
+    },
+    over(e) {
+      this.enter(e);
+    },
+    leave(e) {
+      this.el(e, "card-remove").classList.remove("active");
+    },
+    drop(e) {
+      let backet = this.el(e, "card-remove");
+  
+      if (confirm("Вы действительно хотите удалить карточку?")) {
+        let cardList = document.getElementsByClassName("card-list")[0];
+        let cards = document.getElementsByClassName("card");
+        let card = document.getElementById(e.dataTransfer.getData("text/html"));
+  
+        if (card) {
+          card.remove();
+          backet.classList.remove("active");
+          backet.classList.add("action");
+          setInterval(() => {
+            backet.classList.remove("action");
+          }, 500);
+  
+          if (cards.length <= 0) {
+            cardList.innerHTML = "<p>Список пока пуст</p>";
+          }
+        }
+      } else {
+        this.leave(e);
+      }
+    },
+  };
