@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,16 +71,111 @@
                     </div>
                 </form>
             </div>
-            <div class="group-viewport">
-                <h2>Группа 402</h2>
-                <div class="card-list">
-                    <p>Список пока пуст</p>
-                </div>
+            <div class="card-list">
+                
             </div>
             <div class="icon" ondragenter="drag.enter(event)" ondragover="drag.over(event)"
                 ondragleave="drag.leave(event)" ondrop="drag.drop(event)">
                 <img src="trash_bin.png" alt="">
             </div>
+            </div>
+        </main>
+            <script src="../script_js/script.js"></script>
+            <script src="script.js"></script>
+    </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../media.css">
+    <title>Document</title>
+</head>
+<body>
+        <header>
+            <div class="logo">
+                <div>ITStep</div>
+            </div>
+            <button class="menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="">Главная</a></li>
+                    <li><a href="">Проекты</a></li>
+                    <li><a href="">Обо мне</a></li>
+                    <li><a href="">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="form-registr">
+                <h2>Form registration</h2>
+                <form action="" method="POST" onsubmit="return sendForm(event)">
+                    <div class="form-group">
+                        <label>Ф.И.О</label>
+                        <input type="text" class="form-control" name="fio" required value="Ва Ва ва">
+                        <div class="error" id="name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Дата рождения</label>
+                        <input type="date" class="form-control" name="birthday" required value="2015-12-12">
+                    </div>
+                    <div class="form-group">
+                        <label>Пол</label>
+                        <select name="pol" class="form-control" required>
+                            <option value="male">Мужской пол</option>
+                            <option value="female">Женский пол</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Номер телефона</label>
+                        <input type="tel" class="form-control" name="phone" required value="+375111111111">
+                        <div class="error" id="phone-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" required value="a@gmail.com">
+                        <div class="error" id="email-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Ссылка на GitHub</label>
+                        <input type="url" class="form-control" name="GitHub" required>
+                        <div class="error" id="url-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Адрес</label>
+                        <textarea class="form-control" name="address" required>Minsk-----------</textarea>
+                        <div class="error" id="address-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <button class="form-control" type="submit">Зарегестрировать</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-list">
+                <div class="card" draggable="true" ondragstart="startDrag(event)" id="Test-card">
+                    <!-- <img src="avatar.png" alt="">
+                    <div class="card-name">Test</div>
+                    <div class="card-age">Возраст</div>
+                    <div class="card-pol">Test</div>
+                    <div class="card-tel">Возраст</div>
+                    <div class="card-email">Test</div>
+                    <div class="card-link">Возраст</div>
+                    <div class="card-address">Возраст</div>
+                    <button type="button" onclick="editUser()">Инфо</button> -->
+                </div>
+                <div  class="icon" ondragstart="enterDrag(event)" ondragstart="leaveDrag(event)" ondrop="drop(event)">
+                    <img src="trash_bin.png" alt="">
+                </div>
+                <div></div>
             </div>
         </main>
             <script src="../script_js/script.js"></script>
