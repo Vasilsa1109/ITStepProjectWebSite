@@ -37,6 +37,7 @@
 
 // console.dir([]);
 
+
 if(window.localStorage.getItem("users"))
 {
   let users = JSON.parse(window.localStorage.getItem("users"));
@@ -57,212 +58,171 @@ if(window.localStorage.getItem("users"))
       });
     }
   }
-}
 
-function sendForm(event){
-    let error = {};
-    let address = event.target[6].value;
-    if(address.length < 10){
-        error.address="Ваш адрес слишком короток";
-        let addressfield = document.getElementById("address-error");
-        addressfield.innerHTML = error.address;
-        addressfield.previousElementSibling.classList.add("error");
-    }
-    else{
-        let addressfield = document.getElementById("address-error");
-        addressfield.innerHTML = "";
-        addressfield.previousElementSibling.classList.remove("error");
-    }
-    let name = event.target[0].value;
-    let nameTemplate = /^[А-Я][а-яА-Я\s]*[а-я]$/;
-    if(!nameTemplate.test(name)){
-        error.name="Введите ФИО в нужном формате";
-        let namefield = document.getElementById("name-error");
-        namefield.innerHTML = error.name;
-        namefield.previousElementSibling.classList.add("error");
-    }
-    else{
-        let namefield = document.getElementById("name-error");
-        namefield.innerHTML = "";
-        namefield.previousElementSibling.classList.remove("error");
-    }
-    let phone = event.target[3].value;
-    let phoneTemplate = /^\+375[0-9]{9}$/g; 
-    if(!phoneTemplate.test(phone)){
-        error.phone="Введите номер телефона(+375XXXXXXXXX)";
-        let phonefield = document.getElementById("phone-error");
-        phonefield.innerHTML = error.phone;
-        phonefield.previousElementSibling.classList.add("error");
-    }
-    else{
-        let phonefield = document.getElementById("phone-error");
-        phonefield.innerHTML = "";
-        phonefield.previousElementSibling.classList.remove("error");
-    }
-    let date = event.target[1].value;
-    let gender = event.target[2].value;
-    let email = event.target[4].value;
-    let url = event.target[5].value;
+  function editUser(userId) {
+    let users = JSON.parse(window.localStorage.getItem("users"));
+    let user = users.find(u => u.id === userId);
+    // console.dir(user);
+    user.name = document.querySelector(`input[name="fio"]`).value;
+    user.age = document.querySelector(`input[name="birthday"]`).value ;
+    window.localStorage.setItem("users", JSON.stringify(users));
+    alert("Changes saved successfully");
+    };
+  }
 
-   let errors = 0;
+function sendForm(event) {
+  let error = 0;
 
-    for(key in error){
-        errors++;
-    }
+  error += validate(
+    event.target[0],
+    /^[А-Я][а-яА-Я\s]*[а-я]$/g,
+    "Введите корректное имя"
+  );
+  error += validate(
+    event.target[3],
+    /^\+375[0-9]{9}$/g,
+    "Введите правильный номер телефона (+375ХХХХХХХХХ)"
+  );
+  error += validate(
+    event.target[4],
+    /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/g,
+    "Введите корректный адрес электронной почты"
+  );
+  error += validate(
+    event.target[5],
+    /^(https?:\/\/)?[0-9a-z-_]*(\.[0-9a-z-_]+)*(\.[a-z]+)+(\/[0-9a-z-_]*)*?\/?$/g,
+    "Введите корректный адрес URL"
+  );
+  error += validate(
+    event.target[6],
+    /[\w\W\d\D]{10,}/g,
+    "Ваш адрес слишком короток"
+  );
 
-    if(errors){
-        return false;
-    }
-    else{
-        let list = document.getElementsByClassName("card-list")[0];
-        console.log(list);
-        let now = new Date();
-        let birthday =  new Date(date);
-        let age = now.getFullYear() - birthday.getFullYear();
-        let id = Math.floor(Math.random() * 1000);
-        list.insertAdjacentHTML(
-            "beforeend",
-            `<div class="card" draggable="true" ondragstart="startDrag(event) id="user-${id}">
-            <img src="avatar.png" alt="">
-            <div class="card-name">ФИО: ${name}</div>
-            <div class="card-age">${age} лет</div>
-            <div class="card-pol">Пол:${gender}</div>
-            <div class="card-tel">Номер телефона:${phone}</div>
-            <div class="card-email">Почта: ${email}</div>
-            <div class="card-link">Ссылка: ${url}</div>
-            <div class="card-address">Адрес: ${address}</div>
-            <button type="button" onclick="editUser(${user.id})">Инфо</button>
-        </div>`
-        );
-        // let userData = 'user-${id&$(event.target[0].value)&$(event.target[1].value)&$(now.getFullYear() - birthday.getFullYear()}&${event.target[2].value)&$(event.target[3].value)&$(event.target[4].value)&$(event.target[5].value)&$(event.target[6].value)'
-        let user = {
-            id: id,
-            name: event.target[0].value,
-            birthday: event.target[1].value,
-            age: now.getFullYear() - birthday.getFullYear(),
-            pol: event.target[2].value,
-            phone: event.target[3].value,
-            email: event.target[4].value,
-            url: event.target[5].value,
-            address: event.target[6].value
-        }
-        let users = [];
-        if(window.localStorage.getItem("users")){
-            users = JSON.parse(window.localStorage.getItem("users"));
-        }
-        users.push(user);
-        window.localStorage.setItem("users", JSON.stringify(users))
+  if (error === 0) {
+    let cardList = document.getElementsByClassName("card-list")[0];
 
+    if (cardList) {
+      let now = new Date();
+      let birthday = new Date(event.target[1].value);
+      let id = Math.floor(Math.random() * 1000);
 
-        // let userData = JSON.stringify(user);
-        
-        // window.localStorage.setItem("user", userData);
-        // window.localStorage.setItem("id", `user-${id}`);
-        // window.localStorage.setItem("name", event.target[0].value);
-        // window.localStorage.setItem("birthday", event.target[1].value);
-        // window.localStorage.setItem("age", now.getFullYear() - birthday.getFullYear());
-        // window.localStorage.setItem("pol", event.target[2].value);
-        // window.localStorage.setItem("phone", event.target[3].value);
-        // window.localStorage.setItem("email", event.target[4].value);
-        // window.localStorage.setItem("url", event.target[5].value);
-        // window.localStorage.setItem("adress", event.target[6].value);
+      let newCard = `<div class="card" draggable="true" ondragstart="drag.start(event)" id="user-${id}">
+                      <img src="avatar.png" alt="" ondragstart="event.preventDefault()"/>
+                      <div class="card-name">${event.target[0].value}</div>
+                      <div class="card-age">Возраст: ${
+                        now.getFullYear() - birthday.getFullYear()
+                      } лет</div>
+                      <button type="button" onclick="editUser(${user.id})>Инфо</button>
+                  </div>`;
+
+      let cards = document.getElementsByClassName("card");
+      
+      if (cards.length > 0) {
+        cardList.insertAdjacentHTML("beforeEnd", newCard);
+      } else {
+        cardList.innerHTML = newCard;
+      }
+
+      let user = {
+        id: id,
+        name: event.target[0].value,
+        birthday: event.target[1].value,
+        age: now.getFullYear() - birthday.getFullYear(),
+        pol: event.target[2].value,
+        phone: event.target[3].value,
+        email: event.target[4].value,
+        url: event.target[5].value,
+        address: event.target[6].value
+      }
+
+      let users = [];
+
+      if(window.localStorage.getItem("users"))
+      {
+        users = JSON.parse(window.localStorage.getItem("users"));
+      }
+
+      users.push(user);
+      
+      window.localStorage.setItem("users", JSON.stringify(users));
     }
     return false;
-}
-function editUser(id){
-    let list = document.getElementsByClassName("card-list")[0];
-    let changes = {
-        id: id,
-        new_name: name,
-        new_age: age
-    }
-    list.insertAdjacentHTML(
-        "beforeend",
-        `<div class="card" draggable="true" ondragstart="startDrag(event) id="user-${id}">
-        <img src="avatar.png" alt="">
-        <div class="card-name">ФИО: ${new_name}</div>
-        <div class="card-age">${new_age} лет</div>
-        <div class="card-pol">Пол:${new_gender}</div>
-        <div class="card-tel">Номер телефона:${new_phone}</div>
-        <div class="card-email">Почта: ${new_email}</div>
-        <div class="card-link">Ссылка: ${new_url}</div>
-        <div class="card-address">Адрес: ${new_address}</div>
-        <button type="button" onclick="editUser(event)">Инфо</button>
-    </div>`)
-    users.push(changes);
-}
+  }
 
-function startDrag(event){
-    event.dataTransfer.setData("text/html", event.target.id);
-    event.dataTransfer.effectAllowed = "move";
-}
 
-function enterDrag(event){
-    // event.preventDefalt();
-    event.dataTransfer.dropEffect = "move";
-    event.target.classList.add("active");
-}
 
-function leaveDrag(event){
-    event.target.classList.remove("active");
-}
 
-function endDrag(event){
-    let c = document.getElementsByClassName("icon")[0];
-    if(confirm("вы действительно хотите удалить карточку?")){
-        let ElementId = event.dataTransfer.getData("text/html");
-        let el = document.getElementById(ElementId);
-    }
+
+function validate(element, regexTemplate, errorMessage) {
+  let val = element.value;
+  let errorField = document.createElement("div");
+  errorField.classList.add("error");
+
+  if (element.nextElementSibling) {
+    element.nextElementSibling.remove();
+    element.classList.remove("error");
+  }
+
+  if (!regexTemplate.test(val)) {
+    errorField.innerText = errorMessage;
+    element.parentElement.append(errorField);
+    element.classList.add("error");
+    return true;
+  } else {
+    return false;
+  }
 }
 
 let drag = {
-    el(e, className) {
-      let el = e.target;
-  
-      while (!el.classList.contains(className)) {
-        el = el.parentElement;
-      }
-  
-      return el;
-    },
-    start(e) {
-      let el = this.el(e, "card");
-      e.dataTransfer.setData("text/html", el.id);
-      e.dataTransfer.effectAllowed = "move";
-    },
-    enter(e) {
-      e.preventDefault();
-      this.el(e, "card-remove").classList.add("active");
-      e.dataTransfer.dropEffect = "move";
-    },
-    over(e) {
-      this.enter(e);
-    },
-    leave(e) {
-      this.el(e, "card-remove").classList.remove("active");
-    },
-    drop(e) {
-      let backet = this.el(e, "card-remove");
-  
-      if (confirm("Вы действительно хотите удалить карточку?")) {
-        let cardList = document.getElementsByClassName("card-list")[0];
-        let cards = document.getElementsByClassName("card");
-        let card = document.getElementById(e.dataTransfer.getData("text/html"));
-  
-        if (card) {
-          card.remove();
-          backet.classList.remove("active");
-          backet.classList.add("action");
-          setInterval(() => {
-            backet.classList.remove("action");
-          }, 500);
-  
-          if (cards.length <= 0) {
-            cardList.innerHTML = "<p>Список пока пуст</p>";
-          }
+  el(e, className) {
+    let el = e.target;
+
+    while (!el.classList.contains(className)) {
+      el = el.parentElement;
+    }
+
+    return el;
+  },
+  start(e) {
+    let el = this.el(e, "card");
+    e.dataTransfer.setData("text/html", el.id);
+    e.dataTransfer.effectAllowed = "move";
+  },
+  enter(e) {
+    e.preventDefault();
+    this.el(e, "card-remove").classList.add("active");
+    e.dataTransfer.dropEffect = "move";
+  },
+  over(e) {
+    this.enter(e);
+  },
+  leave(e) {
+    this.el(e, "card-remove").classList.remove("active");
+  },
+  drop(e) {
+    let backet = this.el(e, "card-remove");
+
+    if (confirm("Вы действительно хотите удалить карточку?")) {
+      let cardList = document.getElementsByClassName("card-list")[0];
+      let cards = document.getElementsByClassName("card");
+      let card = document.getElementById(e.dataTransfer.getData("text/html"));
+
+      if (card) {
+        card.remove();
+        backet.classList.remove("active");
+        backet.classList.add("action");
+        setInterval(() => {
+          backet.classList.remove("action");
+        }, 500);
+
+        if (cards.length <= 0) {
+          cardList.innerHTML = "<p>Список пока пуст</p>";
         }
-      } else {
-        this.leave(e);
       }
-    },
-  };
+    } else {
+      this.leave(e);
+    }
+  },
+}
+};
