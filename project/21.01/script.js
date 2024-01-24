@@ -28,6 +28,7 @@ let list = {
             let a =  document.createElement("a");
             a.href = item.href;
             a.innerText = item.text;
+            a.setAttribute('href', item.text);
             elemUl.append(elemLi);
             elemLi.append(a);
         });
@@ -50,10 +51,10 @@ let list = {
 // list.addItem(item);
 
 let texts = [
-    {text :"str_link_1", href: "http://mail.ru"},
-    {text :"str_link_1", href: "http://mail.ru"}, 
-    {text :"str_link_1", href: "http://mail.ru"},
-    {text :"str_link_1", href: "http://mail.ru"},
+    {text :"str_link_1", href: "https://mystat.itstep.org"},
+    {text :"str_link_2", href: "https://mystat.itstep.org"}, 
+    {text :"str_link_3", href: "https://web.telegram.org"},
+    {text :"str_link_4", href: "https://mystat.itstep.org"},
 ]
 texts.forEach(function(text){
     let item = {

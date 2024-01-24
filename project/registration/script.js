@@ -63,9 +63,8 @@ if(window.localStorage.getItem("users"))
     let users = JSON.parse(window.localStorage.getItem("users"));
     let user = users.find(u => u.id === userId);
     // console.dir(user);
-    user.name = document.querySelector(`input[name="fio"]`).value;
-    user.age = document.querySelector(`input[name="birthday"]`).value ;
-    window.localStorage.setItem("users", JSON.stringify(users));
+    document.querySelector(`input[name="fio"]`).value = user.name  ;
+   document.querySelector(`input[name="birthday"]`).value =  user.age;
     alert("Changes saved successfully");
     };
   }
