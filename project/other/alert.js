@@ -1,0 +1,5 @@
+
+function message(name){
+    alert("Hello", $(name));
+}
+message("jo");
