@@ -6,8 +6,9 @@ html, body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: rgb(227, 255, 255);
 }
-.container{
+.products{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,13 +20,14 @@ html, body{
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
-.card{
+.product{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-shadow: 0 0 3px 0 rgb(0,0,0, 7);
     padding: 20px;
+    background-color: rgb(208, 221, 245);
 }
 img{
     width: max-content;
@@ -39,12 +41,15 @@ button{
     width: 100px;
     border-radius: 5%;
 }
-.price{
+.prices{
     display: flex;
     gap: 10px;
 }
 .sale{
-    text-decoration: line-through;
+    text-decoration: 2px rgb(124, 43, 43) line-through;
+}
+.old-price{
+    text-decoration: 2px rgb(124, 43, 43) line-through;
 }
 .card p{
     color: gray;

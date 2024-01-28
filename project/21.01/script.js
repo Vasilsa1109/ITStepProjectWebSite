@@ -28,7 +28,7 @@ let list = {
             let a =  document.createElement("a");
             a.href = item.href;
             a.innerText = item.text;
-            a.setAttribute('href', item.text);
+            // a.setAttribute('href', item.text);
             elemUl.append(elemLi);
             elemLi.append(a);
         });
@@ -57,20 +57,21 @@ let texts = [
     {text :"str_link_4", href: "https://mystat.itstep.org"},
 ]
 texts.forEach(function(text){
-    let item = {
-        text : "",
-        href: "", 
-        setText(text){  
-            this.text = text;
-        },
-        setHref(href){
-            this.href = href;
-        }
-    }
+    // let item = {
+    //     text : "",
+    //     href: "", 
+    //     setText(text){  
+    //         this.text = text;
+    //     },
+    //     setHref(href){
+    //         this.href = href;
+    //     }
+    // }
     
-    item.setText(text.text);
-    item.setText(text.href);
-    list.addItem(item);
+    // item.setText(text.text);
+    // item.setHref(text.href);
+    // list.addItem(item);
+    list.addItem(text);
 });
 
 console.log(list);

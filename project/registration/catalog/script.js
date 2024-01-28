@@ -1,7 +1,19 @@
 let page = 0; //выборка с ресурса
+
 document.addEventListener("DOMContentLoaded", () => {
     loadContent();
-})
+});
+
+window.addEventListener("scroll", function(event){
+    const screenHeight = window.innerHeight;
+    const height = document.body.offsetHeight;
+    const scrolled = window.scrollY;
+    // if((scrolled+screenHeight) => height){
+    //     loadContent();
+    // }
+});
+
+
 function loadContent(){
     let xhr = new XMLHttpRequest();
     let url = new URL("http://jey.of.by/");
@@ -10,7 +22,7 @@ function loadContent(){
     }
     xhr.open("GET", url);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    // xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.responseType = 'json';
     xhr.send();
     xhr.onload = function(){
@@ -27,11 +39,11 @@ function loadContent(){
 
 function renderProducts(products){
     if(products.length > 0){
-        let products = document.getElementsByClassName("products")[0];
+        let productsList = document.getElementsByClassName("container products")[0];
         let productsCode = '';
         products.forEach((product) => {
-        let price = (product.prices.new>0) ? `<h2 class="price">${product.prices.new} </h2><h2 class="old-price">${product.prices.old} </h2>` : `<h2 class="price">${product.prices.old} </h2>`;
-        productsCode +=` <div class="card">
+        let price = (product.prices.new>0) ? `<h2 class="price">${product.prices.new} руб. </h2><h2 class="old-price">${product.prices.old} руб. </h2>` : `<h2 class="price">${product.prices.old} руб. </h2>`;
+        productsCode +=` <div class="product info">
         <img src="${product.image}" alt="${product.name}">
         <h3>Название</h3>
         <p>${product.tieser.slice(0,90)}...</p>
@@ -41,7 +53,7 @@ function renderProducts(products){
             <button><a href="">В корзину</a></button>
         </div>
         </div>`
-    })};
+    })
     productsList.insertAdjacentHTML("beforeend", productsCode);
-    page+=1;
+};
 }
